@@ -1,0 +1,35 @@
+{
+	"name": "extws-driver-uws",
+	"version": "1.0.0-beta.114",
+	"description": "Driver for ExtWS server based on uWebSockets.",
+	"main": "main.js",
+	"engines": {
+		"node": ">10.0.0"
+	},
+	"dependencies": {
+		"ip-address": "^8.1.0",
+		"uWebSockets.js": "github:uNetworking/uWebSockets.js#a58e810e47a23696410f6073c8c905dc38f75da5"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kirick13/extws-driver-uws.git"
+	},
+	"keywords": [
+		"websocket",
+		"ws",
+		"networking",
+		"uwebsockets",
+		"extws",
+		"server",
+		"driver"
+	],
+	"author": "Daniil Kirichenko (https://twitter.com/kirickme)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kirick13/extws-driver-uws/issues"
+	},
+	"homepage": "https://github.com/kirick13/extws-driver-uws#readme"
+}
