@@ -7,7 +7,9 @@ const ExtWSClient        = require('extws-server/src/client');
 const { Address6 }       = require('ip-address');
 const uWebSockets        = require('uWebSockets.js');
 
-class ExtWSOnuWebSsocketsDriver extends ExtWSDriver {
+const subnet4in6 = new Address6('::ffff:0:0/96');
+
+class ExtWSOnUWebSocketsDriver extends ExtWSDriver {
 	constructor ({
 		port,
 		path,
@@ -47,7 +49,7 @@ class ExtWSOnuWebSsocketsDriver extends ExtWSDriver {
 				open: (uws_client) => {
 					uws_client.subscribe(GROUP_BROADCAST);
 
-					const client = new ExtWSOnuWebSsocketsClient(
+					const client = new ExtWSOnUWebSocketsClient(
 						this,
 						uws_client,
 					);
@@ -62,10 +64,15 @@ class ExtWSOnuWebSsocketsDriver extends ExtWSDriver {
 								uws_client.getRemoteAddress(),
 							),
 						);
+						// console.log('IP', Buffer.from(uws_client.getRemoteAddress()));
+						// console.log('IP', ip_address);
 
-						const is_v4 = ip_address.is4;
+						const is_v4 = ip_address.isInSubnet(subnet4in6);
+						// console.log('IP is_v4', is_v4);
 						client.remoteAddress = (is_v4 ? ip_address.to4() : ip_address).address;
+						// console.log('IP remoteAddress', client.remoteAddress);
 						client.remoteAddress6 = is_v4 ? Address6.fromAddress4(client.remoteAddress) : ip_address;
+						// console.log('IP remoteAddress6', client.remoteAddress6);
 					}
 
 					client.headers = {};
@@ -114,9 +121,9 @@ class ExtWSOnuWebSsocketsDriver extends ExtWSDriver {
 	}
 }
 
-module.exports = ExtWSOnuWebSsocketsDriver;
+module.exports = ExtWSOnUWebSocketsDriver;
 
-class ExtWSOnuWebSsocketsClient extends ExtWSClient {
+class ExtWSOnUWebSocketsClient extends ExtWSClient {
 	constructor (driver, uws_client) {
 		super();
 

@@ -1,7 +1,10 @@
 {
 	"name": "extws-driver-uws",
-	"version": "1.0.0-beta.114",
+	"version": "1.0.0",
 	"description": "Driver for ExtWS server based on uWebSockets.",
+	"publishConfig": {
+		"--tag": "beta"
+	},
 	"main": "main.js",
 	"engines": {
 		"node": ">10.0.0"
