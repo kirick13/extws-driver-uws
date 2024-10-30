@@ -1,44 +1,20 @@
 {
-	"name": "extws-server-uws",
+	"name": "extws-driver-uws",
 	"version": "1.0.0",
-	"description": "Server for ExtWS server based on uWebSockets.",
+	"description": "Driver for ExtWS server based on uWebSockets.",
 	"publishConfig": {
 		"--tag": "beta"
 	},
-	"main": "dist/esm/main.js",
-	"types": "dist/esm/main.d.ts",
-	"type": "module",
-	"exports": {
-		".": {
-			"import": "./dist/esm/main.js",
-			"require": "./dist/main.cjs"
-		}
-	},
+	"main": "main.js",
 	"engines": {
-		"node": ">=16.14"
+		"node": ">10.0.0"
 	},
 	"dependencies": {
-		"@extws/server": "0.2.0-beta.2",
-		"@types/ws": "^8.5.12",
+		"ip-address": "^8.1.0",
 		"uWebSockets.js": "github:uNetworking/uWebSockets.js#a58e810e47a23696410f6073c8c905dc38f75da5"
 	},
-	"devDependencies": {
-		"@kirick/eslint-config": "latest",
-		"@types/node": "^16.14",
-		"typescript": "^5.6.3",
-		"vitest": "^2.1.4",
-		"ws": "^8.18.0"
-	},
-	"peerDependencies": {
-		"@kirick/ip": "^0.1.1"
-	},
 	"scripts": {
-		"build": "rm -r dist ; bun run build:ts && bun run build:cjs",
-		"build:cjs": "bunx esbuild --bundle --platform=node --format=cjs --packages=external --outfile=dist/main.cjs dist/esm/main.js",
-		"build:ts": "rm -r dist/esm ; tsc",
-		"lint": "eslint . && tsc --skipLibCheck --noemit",
-		"publish:npm": "bun run build && bun run lint && bun run test && npm publish",
-		"test": "vitest run --no-file-parallelism"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
